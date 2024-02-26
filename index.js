@@ -16,18 +16,14 @@ function writeToFile(file, data) {
   //checks what shape users want and to add that to the SVG file
 
   if (data.shape[0] === "Circle") {
-    console.log(data.shape[0]);
     svgString += new Shape.Circle(data.shapeColor).render();
   } else if (data.shape[0] === "Triangle") {
-    console.log(data.shape[0]);
     svgString += new Shape.Triangle(data.shapeColor).render();
   } else {
-    console.log(data.shape[0]);
     svgString += new Shape.Square(data.shapeColor).render();
   }
   //ADD THE TEXT HERE
   var text = data.logo;
-  console.log("the logo = " + text.toUpperCase());
   svgString += `<text x="30" y="53" font-family="arial" font-size="20" fill="${
     data.logoColor
   }" >${text.toUpperCase()}</text>`;
@@ -40,7 +36,7 @@ function writeToFile(file, data) {
     err
       ? console.log(err)
       : console.log(
-          "Generated Successfully, look in the examples folder for your logo. Openw with Default Browser"
+          "Generated Successfully! Look for your logo in the 'examples' folder & 'Open with Default Browser'"
         );
   });
 }

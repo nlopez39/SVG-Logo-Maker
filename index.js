@@ -2,11 +2,48 @@
 const Shape = require("./lib/shapes");
 //include inquirer
 const inquirer = require("inquirer");
+const fs = require("fs");
 
-//instances of Circle, Triangle, Square
-const circle = new Shape.Circle(50);
-const triangle = new Shape.Triangle(10, 20, 90);
-const square = new Shape.Square(50, 50);
+//function to write an SVG file
+function writeToFile(file, data) {
+  //file starts as an empty string
+  let svgString = "";
+  //set the width and height of the logo container
+  svgString = '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">';
+  //TODO: add LOGO Text here
+  //text was not showing up in shape, need to place them in a group
+  svgString += "<g>";
+  //checks what shape users want and to add that to the SVG file
+
+  if (data.shape[0] === "Circle") {
+    console.log(data.shape[0]);
+    svgString += new Shape.Circle(data.shapeColor).render();
+  } else if (data.shape[0] === "Triangle") {
+    console.log(data.shape[0]);
+    svgString += new Shape.Triangle(data.shapeColor).render();
+  } else {
+    console.log(data.shape[0]);
+    svgString += new Shape.Square(data.shapeColor).render();
+  }
+  //ADD THE TEXT HERE
+  var text = data.logo;
+  console.log("the logo = " + text.toUpperCase());
+  svgString += `<text x="30" y="53" font-family="arial" font-size="20" fill="${
+    data.logoColor
+  }" >${text.toUpperCase()}</text>`;
+  //close the group
+  svgString += "</g>";
+  //close the svg element
+  svgString += "</svg>";
+
+  fs.writeFile(file, svgString, (err) => {
+    err
+      ? console.log(err)
+      : console.log(
+          "Generated Successfully, look in the examples folder for your logo. Openw with Default Browser"
+        );
+  });
+}
 
 //create the questions
 var questions = [
@@ -35,9 +72,6 @@ var questions = [
 
 //use inquirer
 inquirer.prompt(questions).then((data) => {
-  //then take that data and save it to an object
-  const userInput = data;
-  console.log(userInput.logo);
   //now take all of the individual information from user input and include it to an svg file?
-  //check what shape user chose
+  writeToFile("./examples/testSVG.svg", data);
 });

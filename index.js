@@ -9,7 +9,7 @@ function writeToFile(file, data) {
   //file starts as an empty string
   let svgString = "";
   //set the width and height of the logo container
-  svgString = '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">';
+  svgString = '<svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">';
   //TODO: add LOGO Text here
   //text was not showing up in shape, need to place them in a group
   svgString += "<g>";
@@ -24,7 +24,7 @@ function writeToFile(file, data) {
   }
   //ADD THE TEXT HERE
   var text = data.logo;
-  svgString += `<text x="30" y="53" font-family="arial" font-size="20" fill="${
+  svgString += `<text x="30" y="50" text-anchor="middle" fill="${
     data.logoColor
   }" >${text.toUpperCase()}</text>`;
   //close the group

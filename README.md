@@ -15,7 +15,7 @@ This app allows users to automatically generate a simple logo in an SVG file fro
 
 ### Demo
 
-[Demo Video]()
+[Demo Video](https://drive.google.com/file/d/12OerzZnuKNd-nKEgoaOmjf9RMGMdp8g7/view?usp=sharing)
 
 ## Installation
 
